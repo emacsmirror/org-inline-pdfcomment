@@ -3,7 +3,7 @@
 
 # org-inline-pdfcomment
 
-This package provides support for exporting org-inlinetask elements as PDF comments using the pdfcomment.sty package for LaTeX (https://ctan.org/pkg/pdfcomment).
+This package provides support for exporting org-inlinetask elements as PDF comments using the [pdfcomment.sty](https://ctan.org/pkg/pdfcomment) package for LaTeX.
 It may be enabled as follows:
 
 ```elisp
