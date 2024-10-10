@@ -33,7 +33,7 @@
 ;;; Customizations
 
 (defgroup org-inline-pdfcomment nil
-  "TODO"
+  "Inline Task Export as PDF Comments."
   :group 'org-export-latex
   :prefix "org-inline-pdfcomment-"
   :link '(url-link :tag "Sourcehut" "https://git.sr.ht/~swflint/org-inline-pdfcomment")
