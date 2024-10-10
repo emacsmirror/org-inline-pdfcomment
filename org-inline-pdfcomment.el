@@ -221,7 +221,12 @@ For more information, see the option
 ;;; Installation Function
 
 (defun org-inline-pdfcomment-insinuate ()
-  "Install support for exporting inlinetasks using pdfcomment.sty."
+  "Install support for exporting inlinetasks using pdfcomment.sty.
+
+This will set `org-latex-format-inline-task-function' to
+`org-inline-pdfcomment-export', and will append the pdfcomment
+package to `org-latex-default-packages-alist' (without options,
+and not required for snippet export)."
   (setf org-latex-format-inlinetask-function #'org-inline-pdfcomment-export)
   (add-to-list 'org-latex-default-packages-alist '("" "pdfcomment" nil) t))
 
