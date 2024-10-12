@@ -159,7 +159,7 @@ necessary, as none is provided during final comment formatting."
                  function))
 
 
-;;; Export Function
+;;; Part Formatter Functions
 
 (defun org-inline-pdfcomment-format-todo (state _type priority)
   "Format todo STATE given (numeric, character) PRIORITY for export.
@@ -185,6 +185,9 @@ Otherwise, format as: \\=' (tag1, tag2, ..., tagn)\\='."
   (if (null tags)
       ""
     (format " (%s)" (mapconcat #'identity tags ", "))))
+
+
+;;; Export Functions
 
 (defun org-inline-pdfcomment--merge-options (options)
   "Merge OPTIONS with `org-inline-pdfcomment-options'."
