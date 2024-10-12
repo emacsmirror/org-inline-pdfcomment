@@ -1,7 +1,7 @@
 ;;; org-inline-pdfcomment.el --- Export Support for Inline Tasks as PDF Comments  -*- lexical-binding: t; -*-
 
 ;; Author: Samuel W. Flint <me@samuelwflint.com>
-;; Version: 1.0.0
+;; Version: 1.0.1
 ;; Homepage: https://git.sr.ht/~swflint/org-inline-pdfcomment
 ;; Keywords: docs, text
 ;; Package-Requires: ((emacs "24.4"))
@@ -227,8 +227,9 @@ For more information, see the option
                                tags))
          (author (or (plist-get info :author) user-full-name))
          (subject (concat todo-string subject))
-         (options-list (list (cons "author" author)
-                             (cons "subject" subject)))
+         (options-list (org-inline-pdfcomment--merge-options
+                        (list (cons "author" author)
+                              (cons "subject" subject))))
          (contents (concat subject ": " (or contents "") tags-string)))
     (format "\\%s[%s]{%s}"
             (cond
@@ -237,7 +238,11 @@ For more information, see the option
              ((stringp org-inline-pdfcomment-type) org-inline-pdfcomment-type)
              (t "pdfcomment"))
             (mapconcat (lambda (pair)
-                         (format "%s={%s}" (car pair) (cdr pair)))
+                         (format (if (string-match-p (rx space) (cdr pair))
+                                     "%s={%s}"
+                                   "%s=%s")
+                                 (car pair)
+                                 (cdr pair)))
                        options-list
                        ",")
             contents)))
